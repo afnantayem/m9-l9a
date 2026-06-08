@@ -14,10 +14,17 @@
     skos:prefLabel "Thai" ;
     skos:altLabel  "ไทย" .
 
-# TODO: add at least one more cuisine class with skos:prefLabel + skos:altLabel
-# so the 10 recipes you add can use a third cuisine. For Q2 in queries.py to
-# exercise the altLabel path, at least one recipe must use a cuisine whose
-# label only matches via skos:altLabel.
+:Mediterranean a :Cuisine ;
+    skos:prefLabel "Mediterranean" ;
+    skos:altLabel  "med cuisine" .
+
+:Japanese a :Cuisine ;
+    skos:prefLabel "Japanese" ;
+    skos:altLabel  "nihon ryori" .
+
+:Mexican a :Cuisine ;
+    skos:prefLabel "Mexican" ;
+    skos:altLabel  "mexicano" .
 
 # ---- Ingredient classes (SKOS-labeled) ----
 
@@ -33,14 +40,35 @@
     skos:prefLabel "chili" ;
     skos:altLabel  "chile" .
 
+:tofu a :Ingredient ;
+    skos:prefLabel "tofu" ;
+    skos:altLabel  "bean curd" .
+
+:salmon a :Ingredient ;
+    skos:prefLabel "salmon" ;
+    skos:altLabel  "Atlantic salmon" .
+
+:avocado a :Ingredient ;
+    skos:prefLabel "avocado" ;
+    skos:altLabel  "aguacate" .
+
+:tomato a :Ingredient ;
+    skos:prefLabel "tomato" ;
+    skos:altLabel  "pomodoro" .
+
+:lemon a :Ingredient ;
+    skos:prefLabel "lemon" ;
+    skos:altLabel  "citron" .
+
 # ---- Authors ----
 
 :authorAlice a :Author ; :name "Alice Romano" .
 :authorBruno a :Author ; :name "Bruno Tanaka" .
+:authorCarla a :Author ; :name "Carla Mendez" .
+:authorDaisuke a :Author ; :name "Daisuke Mori" .
+:authorEva a :Author ; :name "Eva Petrov" .
 
-# TODO: add a few more :Author resources for your recipes to reference.
-
-# ---- Recipes (5 pre-filled; extend to 15) ----
+# ---- Recipes (15 total) ----
 
 :recipe001 a :Recipe ;
     :name              "Eggplant Parmigiana" ;
@@ -77,7 +105,76 @@
     :author            :authorBruno ;
     :year              2023 .
 
-# TODO: add 10 more recipes (recipe006..recipe015) following the same pattern.
-# Use a mix of years from 2015 through 2024 so the post-2020 query (Q3) has
-# interesting boundaries. At least one recipe must use a cuisine whose label
-# match only succeeds via skos:altLabel — Q2's autograder verifies this.
+# --- 10 new recipes ---
+
+:recipe006 a :Recipe ;
+    :name              "Tomato Bruschetta" ;
+    :cuisine           :Italian ;
+    :primaryIngredient :tomato ;
+    :author            :authorAlice ;
+    :year              2017 .
+
+:recipe007 a :Recipe ;
+    :name              "Lemon Risotto" ;
+    :cuisine           :Italian ;
+    :primaryIngredient :lemon ;
+    :author            :authorEva ;
+    :year              2024 .
+
+# This recipe uses :Mediterranean whose altLabel is "italiano" —
+# the altLabel path in Q2 must return it.
+:recipe008 a :Recipe ;
+    :name              "Mediterranean Stuffed Eggplant" ;
+    :cuisine           :Mediterranean ;
+    :primaryIngredient :eggplant ;
+    :author            :authorCarla ;
+    :year              2022 .
+
+:recipe009 a :Recipe ;
+    :name              "Grilled Salmon with Lemon" ;
+    :cuisine           :Mediterranean ;
+    :primaryIngredient :salmon ;
+    :author            :authorCarla ;
+    :year              2015 .
+
+:recipe010 a :Recipe ;
+    :name              "Miso Tofu Soup" ;
+    :cuisine           :Japanese ;
+    :primaryIngredient :tofu ;
+    :author            :authorDaisuke ;
+    :year              2016 .
+
+:recipe011 a :Recipe ;
+    :name              "Salmon Teriyaki" ;
+    :cuisine           :Japanese ;
+    :primaryIngredient :salmon ;
+    :author            :authorDaisuke ;
+    :year              2021 .
+
+:recipe012 a :Recipe ;
+    :name              "Avocado Sushi Roll" ;
+    :cuisine           :Japanese ;
+    :primaryIngredient :avocado ;
+    :author            :authorDaisuke ;
+    :year              2023 .
+
+:recipe013 a :Recipe ;
+    :name              "Guacamole Clasico" ;
+    :cuisine           :Mexican ;
+    :primaryIngredient :avocado ;
+    :author            :authorCarla ;
+    :year              2020 .
+
+:recipe014 a :Recipe ;
+    :name              "Chili Verde" ;
+    :cuisine           :Mexican ;
+    :primaryIngredient :chili ;
+    :author            :authorCarla ;
+    :year              2024 .
+
+:recipe015 a :Recipe ;
+    :name              "Tom Yum Soup" ;
+    :cuisine           :Thai ;
+    :primaryIngredient :chili ;
+    :author            :authorBruno ;
+    :year              2015 .
