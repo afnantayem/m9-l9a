@@ -27,11 +27,21 @@ def main():
     HTTP Basic Auth (FUSEKI_USER, FUSEKI_PASSWORD), and raises a non-zero
     exit on any non-2xx response.
     """
-    # TODO: open TTL_FILE in binary mode and POST its bytes to FUSEKI_DATA_URL
-    # TODO: include the header Content-Type: text/turtle
-    # TODO: include HTTP Basic Auth — auth=(FUSEKI_USER, FUSEKI_PASSWORD)
-    # TODO: raise on non-2xx (response.raise_for_status())
-    raise NotImplementedError("Complete the POST in load_dataset.main")
+    # open TTL_FILE in binary mode and POST its bytes to FUSEKI_DATA_URL
+    # include the header Content-Type: text/turtle
+    # include HTTP Basic Auth — auth=(FUSEKI_USER, FUSEKI_PASSWORD)
+    # raise on non-2xx (response.raise_for_status())
+    with open(TTL_FILE, "rb") as f:
+        ttl_bytes = f.read()
+ 
+    response = requests.post(
+        FUSEKI_DATA_URL,
+        data=ttl_bytes,
+        headers={"Content-Type": "text/turtle"},
+        auth=(FUSEKI_USER, FUSEKI_PASSWORD),
+    )
+    response.raise_for_status()
+    print(f"Loaded {TTL_FILE} → HTTP {response.status_code}")
 
 
 if __name__ == "__main__":
